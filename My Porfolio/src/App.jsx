@@ -13,7 +13,7 @@ export default function App() {
   const audioRef = useRef(null);
 
   // Images for the Slider
-  const groupImages = ["/group1.jpg", "/group2.jpg", "/group3.jpg"];
+ const groupImages = ["/group1.jpg", "/group2.jpg"];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
