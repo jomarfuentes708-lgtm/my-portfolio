@@ -9,3 +9,13 @@ html, body {
 *, *:before, *:after {
   box-sizing: inherit;
 }
+
+img, video, canvas, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+div, section, header, footer {
+  max-width: 100%;
+  box-sizing: border-box;
+}
