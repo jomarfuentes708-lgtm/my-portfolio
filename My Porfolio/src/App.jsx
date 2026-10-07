@@ -334,7 +334,6 @@ export default function App() {
           Interested in collaborating or discussing web development projects? Feel free to reach out via social media or email!
         </p>
         
-        {/* Contact Links with Official Brand Icons */}
         <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap', marginBottom: '20px' }}>
           
           {/* GitHub */}
@@ -363,31 +362,18 @@ export default function App() {
             style={{ backgroundColor: '#1a1a1a', color: '#fff', border: '1px solid #444', padding: '10px 18px', borderRadius: '8px', textDecoration: 'none', fontWeight: 'bold', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '8px' }}
           >
             <SiGmail style={{ fontSize: '16px', color: '#EA4335' }} /> Gmail
-             </a>
+          </a>
 
-<a 
-  href="https://www.tiktok.com/@jomarfuentes3872" 
-  target="_blank" 
-  rel="noreferrer"
-  aria-label="TikTok"
-  style={{ 
-    backgroundColor: '#1a1a1a', 
-    color: '#fff', 
-    border: '1px solid #444', 
-    width: '42px',
-    height: '42px',
-    borderRadius: '50%', 
-    textDecoration: 'none', 
-    display: 'flex', 
-    alignItems: 'center', 
-    justifyContent: 'center',
-    transition: '0.3s'
-  }}
->
-  <FaTiktok style={{ fontSize: '20px', color: '#ff0050' }} />
-</a>
-```
-
+          {/* TikTok */}
+          <a 
+            href="https://www.tiktok.com/@jomarfuentes3872" 
+            target="_blank" 
+            rel="noreferrer"
+            style={{ backgroundColor: '#1a1a1a', color: '#fff', border: '1px solid #444', padding: '10px 18px', borderRadius: '8px', textDecoration: 'none', fontWeight: 'bold', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '8px' }}
+          >
+            <FaTiktok style={{ fontSize: '16px', color: '#ff0050' }} /> TikTok
+          </a>
+        </div>
 
         <div>
           <button 
