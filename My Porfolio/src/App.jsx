@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FaGithub, FaFacebook, FaTiktok } from 'react-icons/fa';
-import { SiGmail } from 'react-icons/si';
 
 export default function App() {
   const roles = [
@@ -12,7 +10,35 @@ export default function App() {
   
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
   const audioRef = useRef(null);
+
+  // Theme colors
+  const theme = isDarkMode ? {
+    bg: '#0f0f0f',
+    bgSecondary: '#141414',
+    bgTertiary: '#1a1a1a',
+    text: '#fff',
+    textSecondary: '#ccc',
+    textTertiary: '#aaa',
+    textLight: '#888',
+    border: '#222',
+    borderSecondary: '#333',
+    borderTertiary: '#444',
+    accent: '#00ffcc',
+  } : {
+    bg: '#f5f5f5',
+    bgSecondary: '#fff',
+    bgTertiary: '#e8e8e8',
+    text: '#000',
+    textSecondary: '#333',
+    textTertiary: '#555',
+    textLight: '#777',
+    border: '#ddd',
+    borderSecondary: '#ccc',
+    borderTertiary: '#bbb',
+    accent: '#00ccaa',
+  };
 
   // Images for the Slider (2 images)
   const groupImages = ["/group1.jpg", "/group2.jpg"];
@@ -74,7 +100,7 @@ export default function App() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#0f0f0f', color: '#fff', fontFamily: 'sans-serif', overflowX: 'hidden', width: '100%', boxSizing: 'border-box' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: theme.bg, color: theme.text, fontFamily: 'sans-serif', overflowX: 'hidden', width: '100%', boxSizing: 'border-box' }}>
       
       {/* Audio Element */}
       <audio 
@@ -85,28 +111,46 @@ export default function App() {
       />
 
       {/* Navbar */}
-      <nav style={{ display: 'flex', justifyContent: 'space-between', padding: '15px 20px', alignItems: 'center', borderBottom: '1px solid #222', position: 'sticky', top: 0, backgroundColor: '#0f0f0f', zIndex: 100, flexWrap: 'wrap', gap: '10px' }}>
+      <nav style={{ display: 'flex', justifyContent: 'space-between', padding: '15px 20px', alignItems: 'center', borderBottom: `1px solid ${theme.border}`, position: 'sticky', top: 0, backgroundColor: theme.bg, zIndex: 100, flexWrap: 'wrap', gap: '10px' }}>
         <div style={{ fontWeight: 'bold', fontSize: '18px', display: 'flex', alignItems: 'center', gap: '8px' }}>
           <span>JF</span>
-          <span style={{ fontSize: '10px', color: '#888', border: '1px solid #333', padding: '2px 6px', borderRadius: '4px' }}>@jomarfuentes708-lgtm</span>
+          <span style={{ fontSize: '10px', color: theme.textLight, border: `1px solid ${theme.borderSecondary}`, padding: '2px 6px', borderRadius: '4px' }}>@jomarfuentes708-lgtm</span>
         </div>
         
-        <div style={{ display: 'flex', gap: '15px', color: '#ccc', fontSize: '13px', alignItems: 'center', flexWrap: 'wrap' }}>
-          <span onClick={() => scrollToSection('home')} style={{ color: '#fff', fontWeight: 'bold', cursor: 'pointer' }}>Home</span>
+        <div style={{ display: 'flex', gap: '15px', color: theme.textSecondary, fontSize: '13px', alignItems: 'center', flexWrap: 'wrap' }}>
+          <span onClick={() => scrollToSection('home')} style={{ color: theme.text, fontWeight: 'bold', cursor: 'pointer' }}>Home</span>
           <span onClick={() => scrollToSection('about')} style={{ cursor: 'pointer' }}>About</span>
           <span onClick={() => scrollToSection('skills')} style={{ cursor: 'pointer' }}>Skills</span>
           <span onClick={() => scrollToSection('projects')} style={{ cursor: 'pointer' }}>Projects</span>
           <span onClick={() => scrollToSection('contact')} style={{ cursor: 'pointer' }}>Contact</span>
         </div>
 
+        {/* Theme Toggle Button */}
+        <button 
+          onClick={() => setIsDarkMode(!isDarkMode)}
+          style={{ 
+            backgroundColor: theme.bgTertiary, 
+            color: theme.text, 
+            border: `1px solid ${theme.borderTertiary}`, 
+            padding: '6px 12px', 
+            borderRadius: '20px', 
+            cursor: 'pointer', 
+            fontSize: '12px', 
+            fontWeight: 'bold',
+            transition: 'all 0.3s'
+          }}
+        >
+          {isDarkMode ? '☀️ Light' : '🌙 Dark'}
+        </button>
+
         {/* Music Play Button */}
         <div>
           <button 
             onClick={togglePlay}
             style={{ 
-              backgroundColor: isPlaying ? '#00ffcc' : '#1a1a1a', 
-              color: isPlaying ? '#000' : '#fff', 
-              border: '1px solid #444', 
+              backgroundColor: isPlaying ? theme.accent : theme.bgTertiary, 
+              color: isPlaying ? '#000' : theme.text, 
+              border: `1px solid ${theme.borderTertiary}`, 
               padding: '6px 12px', 
               borderRadius: '20px', 
               cursor: 'pointer', 
@@ -124,23 +168,23 @@ export default function App() {
       </nav>
 
       {/* Hero Section */}
-      <div id="home" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', padding: '40px 20px', borderBottom: '1px solid #222', gap: '40px', textAlign: 'center' }}>
+      <div id="home" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', padding: '40px 20px', borderBottom: `1px solid ${theme.border}`, gap: '40px', textAlign: 'center' }}>
         
         <div style={{ maxWidth: '400px' }}>
-          <div style={{ display: 'inline-block', backgroundColor: '#1a1a1a', border: '1px solid #333', padding: '6px 14px', borderRadius: '20px', fontSize: '12px', color: '#00ffcc', marginBottom: '15px' }}>
+          <div style={{ display: 'inline-block', backgroundColor: theme.bgTertiary, border: `1px solid ${theme.borderSecondary}`, padding: '6px 14px', borderRadius: '20px', fontSize: '12px', color: theme.accent, marginBottom: '15px' }}>
             🟢 Available for work
           </div>
-          <p style={{ fontSize: '16px', color: '#aaa', margin: '0 0 5px 0' }}>Hey there! I'm</p>
+          <p style={{ fontSize: '16px', color: theme.textTertiary, margin: '0 0 5px 0' }}>Hey there! I'm</p>
           <h1 style={{ fontSize: '38px', fontWeight: 'bold', margin: '0 0 15px 0', letterSpacing: '-1px' }}>
             Jomar Fuentes
           </h1>
-          <p style={{ color: '#888', fontSize: '14px', lineHeight: '1.6', marginBottom: '20px' }}>
+          <p style={{ color: theme.textLight, fontSize: '14px', lineHeight: '1.6', marginBottom: '20px' }}>
             Crafting digital experiences with clean code and innovative solutions.
           </p>
         </div>
 
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <div style={{ width: '260px', height: '260px', borderRadius: '50%', overflow: 'hidden', border: '3px solid #00ffcc', boxShadow: '0 0 20px rgba(0,255,204,0.2)' }}>
+          <div style={{ width: '260px', height: '260px', borderRadius: '50%', overflow: 'hidden', border: `3px solid ${theme.accent}`, boxShadow: `0 0 20px rgba(0,255,204,0.2)` }}>
             <img 
               src="/profile.jpg" 
               alt="Jomar Fuentes" 
@@ -150,10 +194,10 @@ export default function App() {
         </div>
 
         <div style={{ maxWidth: '400px' }}>
-          <h2 style={{ fontSize: '26px', fontWeight: 'bold', margin: '0 0 10px 0', minHeight: '40px', color: '#fff' }}>
+          <h2 style={{ fontSize: '26px', fontWeight: 'bold', margin: '0 0 10px 0', minHeight: '40px', color: theme.text }}>
             {roles[currentRoleIndex]}
           </h2>
-          <p style={{ fontSize: '13px', color: '#888', lineHeight: '1.5', marginBottom: '25px' }}>
+          <p style={{ fontSize: '13px', color: theme.textLight, lineHeight: '1.5', marginBottom: '25px' }}>
             College student at Computer Communication Development Institute with expertise in web development and modern frameworks.
           </p>
           <div style={{ display: 'flex', gap: '15px', justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -161,13 +205,13 @@ export default function App() {
               href="https://github.com/jomarfuentes708-lgtm" 
               target="_blank" 
               rel="noreferrer"
-              style={{ backgroundColor: '#1a1a1a', color: '#fff', border: '1px solid #444', padding: '10px 20px', borderRadius: '6px', cursor: 'pointer', fontSize: '13px', fontWeight: 'bold', textDecoration: 'none', display: 'inline-block' }}
+              style={{ backgroundColor: theme.bgTertiary, color: theme.text, border: `1px solid ${theme.borderTertiary}`, padding: '10px 20px', borderRadius: '6px', cursor: 'pointer', fontSize: '13px', fontWeight: 'bold', textDecoration: 'none', display: 'inline-block' }}
             >
               GitHub Profile
             </a>
             <button 
               onClick={handleDownloadCV}
-              style={{ backgroundColor: '#fff', color: '#000', border: 'none', padding: '10px 20px', borderRadius: '6px', cursor: 'pointer', fontSize: '13px', fontWeight: 'bold' }}
+              style={{ backgroundColor: isDarkMode ? '#fff' : '#000', color: isDarkMode ? '#000' : '#fff', border: 'none', padding: '10px 20px', borderRadius: '6px', cursor: 'pointer', fontSize: '13px', fontWeight: 'bold' }}
             >
               Download CV
             </button>
@@ -177,24 +221,24 @@ export default function App() {
       </div>
 
       {/* About Me Section */}
-      <div id="about" style={{ padding: '50px 20px', borderBottom: '1px solid #222' }}>
-        <h2 style={{ fontSize: '30px', fontWeight: 'bold', marginBottom: '25px', textAlign: 'center' }}>About Me</h2>
+      <div id="about" style={{ padding: '50px 20px', borderBottom: `1px solid ${theme.border}` }}>
+        <h2 style={{ fontSize: '30px', fontWeight: 'bold', marginBottom: '25px', textAlign: 'center', color: theme.text }}>About Me</h2>
         
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '40px', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ flex: '1', minWidth: '280px', maxWidth: '500px' }}>
-            <p style={{ fontSize: '14px', color: '#bbb', lineHeight: '1.8', marginBottom: '20px' }}>
+            <p style={{ fontSize: '14px', color: theme.textSecondary, lineHeight: '1.8', marginBottom: '20px' }}>
               I'm a passionate developer with hands-on experience using C#, Java, React with Vite, SQL, and MySQL databases. I specialize in building end-to-end applications—from sleek user interfaces to robust database-backed systems like student service requests, inventory tracking, and management portals.
             </p>
             
             <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-              <span style={{ backgroundColor: '#1a1a1a', border: '1px solid #333', padding: '6px 12px', borderRadius: '6px', fontSize: '12px', color: '#ddd' }}>Problem Solver</span>
-              <span style={{ backgroundColor: '#1a1a1a', border: '1px solid #333', padding: '6px 12px', borderRadius: '6px', fontSize: '12px', color: '#ddd' }}>Fast Learner</span>
-              <span style={{ backgroundColor: '#1a1a1a', border: '1px solid #333', padding: '6px 12px', borderRadius: '6px', fontSize: '12px', color: '#ddd' }}>Team Player</span>
+              <span style={{ backgroundColor: theme.bgTertiary, border: `1px solid ${theme.borderSecondary}`, padding: '6px 12px', borderRadius: '6px', fontSize: '12px', color: theme.textSecondary }}>Problem Solver</span>
+              <span style={{ backgroundColor: theme.bgTertiary, border: `1px solid ${theme.borderSecondary}`, padding: '6px 12px', borderRadius: '6px', fontSize: '12px', color: theme.textSecondary }}>Fast Learner</span>
+              <span style={{ backgroundColor: theme.bgTertiary, border: `1px solid ${theme.borderSecondary}`, padding: '6px 12px', borderRadius: '6px', fontSize: '12px', color: theme.textSecondary }}>Team Player</span>
             </div>
           </div>
 
           {/* Interactive Image Slider */}
-          <div style={{ position: 'relative', width: '100%', maxWidth: '380px', height: '220px', borderRadius: '12px', overflow: 'hidden', border: '2px solid #333', backgroundColor: '#141414' }}>
+          <div style={{ position: 'relative', width: '100%', maxWidth: '380px', height: '220px', borderRadius: '12px', overflow: 'hidden', border: `2px solid ${theme.borderSecondary}`, backgroundColor: theme.bgSecondary }}>
             <img 
               src={groupImages[currentImageIndex]} 
               alt={`Group Slide ${currentImageIndex + 1}`} 
@@ -220,7 +264,7 @@ export default function App() {
                 <span 
                   key={idx} 
                   onClick={() => setCurrentImageIndex(idx)}
-                  style={{ width: currentImageIndex === idx ? '20px' : '8px', height: '8px', borderRadius: '4px', backgroundColor: currentImageIndex === idx ? '#00ffcc' : 'rgba(255,255,255,0.4)', cursor: 'pointer', transition: 'all 0.3s' }}
+                  style={{ width: currentImageIndex === idx ? '20px' : '8px', height: '8px', borderRadius: '4px', backgroundColor: currentImageIndex === idx ? theme.accent : 'rgba(255,255,255,0.4)', cursor: 'pointer', transition: 'all 0.3s' }}
                 />
               ))}
             </div>
@@ -229,35 +273,35 @@ export default function App() {
       </div>
 
       {/* Technical Skills Section */}
-      <div id="skills" style={{ padding: '50px 20px', borderBottom: '1px solid #222' }}>
-        <h2 style={{ fontSize: '30px', fontWeight: 'bold', marginBottom: '30px', textAlign: 'center' }}>Technical Skills</h2>
+      <div id="skills" style={{ padding: '50px 20px', borderBottom: `1px solid ${theme.border}` }}>
+        <h2 style={{ fontSize: '30px', fontWeight: 'bold', marginBottom: '30px', textAlign: 'center', color: theme.text }}>Technical Skills</h2>
         
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px', maxWidth: '1000px', margin: '0 auto' }}>
           
-          <div style={{ backgroundColor: '#141414', border: '1px solid #222', padding: '25px', borderRadius: '12px' }}>
-            <h3 style={{ fontSize: '17px', color: '#00ffcc', marginBottom: '15px' }}>Frontend Development</h3>
+          <div style={{ backgroundColor: theme.bgSecondary, border: `1px solid ${theme.border}`, padding: '25px', borderRadius: '12px' }}>
+            <h3 style={{ fontSize: '17px', color: theme.accent, marginBottom: '15px' }}>Frontend Development</h3>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-              <span style={{ backgroundColor: '#1a1a1a', border: '1px solid #333', padding: '6px 12px', borderRadius: '4px', fontSize: '12px', color: '#ccc' }}>React with Vite</span>
-              <span style={{ backgroundColor: '#1a1a1a', border: '1px solid #333', padding: '6px 12px', borderRadius: '4px', fontSize: '12px', color: '#ccc' }}>HTML5 / CSS3</span>
-              <span style={{ backgroundColor: '#1a1a1a', border: '1px solid #333', padding: '6px 12px', borderRadius: '4px', fontSize: '12px', color: '#ccc' }}>Tailwind CSS</span>
+              <span style={{ backgroundColor: theme.bgTertiary, border: `1px solid ${theme.borderSecondary}`, padding: '6px 12px', borderRadius: '4px', fontSize: '12px', color: theme.textSecondary }}>React with Vite</span>
+              <span style={{ backgroundColor: theme.bgTertiary, border: `1px solid ${theme.borderSecondary}`, padding: '6px 12px', borderRadius: '4px', fontSize: '12px', color: theme.textSecondary }}>HTML5 / CSS3</span>
+              <span style={{ backgroundColor: theme.bgTertiary, border: `1px solid ${theme.borderSecondary}`, padding: '6px 12px', borderRadius: '4px', fontSize: '12px', color: theme.textSecondary }}>Tailwind CSS</span>
             </div>
           </div>
 
-          <div style={{ backgroundColor: '#141414', border: '1px solid #222', padding: '25px', borderRadius: '12px' }}>
-            <h3 style={{ fontSize: '17px', color: '#00ffcc', marginBottom: '15px' }}>Backend & Programming</h3>
+          <div style={{ backgroundColor: theme.bgSecondary, border: `1px solid ${theme.border}`, padding: '25px', borderRadius: '12px' }}>
+            <h3 style={{ fontSize: '17px', color: theme.accent, marginBottom: '15px' }}>Backend & Programming</h3>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-              <span style={{ backgroundColor: '#1a1a1a', border: '1px solid #333', padding: '6px 12px', borderRadius: '4px', fontSize: '12px', color: '#ccc' }}>C# Windows Forms</span>
-              <span style={{ backgroundColor: '#1a1a1a', border: '1px solid #333', padding: '6px 12px', borderRadius: '4px', fontSize: '12px', color: '#ccc' }}>Java</span>
-              <span style={{ backgroundColor: '#1a1a1a', border: '1px solid #333', padding: '6px 12px', borderRadius: '4px', fontSize: '12px', color: '#ccc' }}>.NET Minimal API</span>
+              <span style={{ backgroundColor: theme.bgTertiary, border: `1px solid ${theme.borderSecondary}`, padding: '6px 12px', borderRadius: '4px', fontSize: '12px', color: theme.textSecondary }}>C# Windows Forms</span>
+              <span style={{ backgroundColor: theme.bgTertiary, border: `1px solid ${theme.borderSecondary}`, padding: '6px 12px', borderRadius: '4px', fontSize: '12px', color: theme.textSecondary }}>Java</span>
+              <span style={{ backgroundColor: theme.bgTertiary, border: `1px solid ${theme.borderSecondary}`, padding: '6px 12px', borderRadius: '4px', fontSize: '12px', color: theme.textSecondary }}>.NET Minimal API</span>
             </div>
           </div>
 
-          <div style={{ backgroundColor: '#141414', border: '1px solid #222', padding: '25px', borderRadius: '12px' }}>
-            <h3 style={{ fontSize: '17px', color: '#00ffcc', marginBottom: '15px' }}>Databases & Tools</h3>
+          <div style={{ backgroundColor: theme.bgSecondary, border: `1px solid ${theme.border}`, padding: '25px', borderRadius: '12px' }}>
+            <h3 style={{ fontSize: '17px', color: theme.accent, marginBottom: '15px' }}>Databases & Tools</h3>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-              <span style={{ backgroundColor: '#1a1a1a', border: '1px solid #333', padding: '6px 12px', borderRadius: '4px', fontSize: '12px', color: '#ccc' }}>MySQL Workbench</span>
-              <span style={{ backgroundColor: '#1a1a1a', border: '1px solid #333', padding: '6px 12px', borderRadius: '4px', fontSize: '12px', color: '#ccc' }}>Git CLI & GitHub</span>
-              <span style={{ backgroundColor: '#1a1a1a', border: '1px solid #333', padding: '6px 12px', borderRadius: '4px', fontSize: '12px', color: '#ccc' }}>VS Code</span>
+              <span style={{ backgroundColor: theme.bgTertiary, border: `1px solid ${theme.borderSecondary}`, padding: '6px 12px', borderRadius: '4px', fontSize: '12px', color: theme.textSecondary }}>MySQL Workbench</span>
+              <span style={{ backgroundColor: theme.bgTertiary, border: `1px solid ${theme.borderSecondary}`, padding: '6px 12px', borderRadius: '4px', fontSize: '12px', color: theme.textSecondary }}>Git CLI & GitHub</span>
+              <span style={{ backgroundColor: theme.bgTertiary, border: `1px solid ${theme.borderSecondary}`, padding: '6px 12px', borderRadius: '4px', fontSize: '12px', color: theme.textSecondary }}>VS Code</span>
             </div>
           </div>
 
@@ -265,24 +309,24 @@ export default function App() {
       </div>
 
       {/* Projects Section */}
-      <div id="projects" style={{ padding: '50px 20px', borderBottom: '1px solid #222' }}>
-        <h2 style={{ fontSize: '30px', fontWeight: 'bold', marginBottom: '30px', textAlign: 'center' }}>Featured Projects</h2>
+      <div id="projects" style={{ padding: '50px 20px', borderBottom: `1px solid ${theme.border}` }}>
+        <h2 style={{ fontSize: '30px', fontWeight: 'bold', marginBottom: '30px', textAlign: 'center', color: theme.text }}>Featured Projects</h2>
         
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '25px', maxWidth: '1000px', margin: '0 auto' }}>
           
-          <div style={{ backgroundColor: '#141414', border: '1px solid #222', borderRadius: '12px', padding: '25px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          <div style={{ backgroundColor: theme.bgSecondary, border: `1px solid ${theme.border}`, borderRadius: '12px', padding: '25px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px', flexWrap: 'wrap', gap: '10px' }}>
-                <h3 style={{ fontSize: '20px', fontWeight: 'bold', color: '#fff', margin: 0 }}>Dormitory Allocation System</h3>
-                <span style={{ fontSize: '11px', backgroundColor: '#1a1a1a', border: '1px solid #333', padding: '4px 10px', borderRadius: '20px', color: '#00ffcc' }}>System / App</span>
+                <h3 style={{ fontSize: '20px', fontWeight: 'bold', color: theme.text, margin: 0 }}>Dormitory Allocation System</h3>
+                <span style={{ fontSize: '11px', backgroundColor: theme.bgTertiary, border: `1px solid ${theme.borderSecondary}`, padding: '4px 10px', borderRadius: '20px', color: theme.accent }}>System / App</span>
               </div>
-              <p style={{ fontSize: '13px', color: '#aaa', lineHeight: '1.6', marginBottom: '20px' }}>
+              <p style={{ fontSize: '13px', color: theme.textTertiary, lineHeight: '1.6', marginBottom: '20px' }}>
                 A streamlined management application designed to handle room assignments, tenant tracking, and billing record requests efficiently with a secure database backend.
               </p>
               <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '20px' }}>
-                <span style={{ backgroundColor: '#1a1a1a', border: '1px solid #333', padding: '4px 8px', borderRadius: '4px', fontSize: '11px', color: '#ccc' }}>C# / .NET</span>
-                <span style={{ backgroundColor: '#1a1a1a', border: '1px solid #333', padding: '4px 8px', borderRadius: '4px', fontSize: '11px', color: '#ccc' }}>MySQL</span>
-                <span style={{ backgroundColor: '#1a1a1a', border: '1px solid #333', padding: '4px 8px', borderRadius: '4px', fontSize: '11px', color: '#ccc' }}>Windows Forms</span>
+                <span style={{ backgroundColor: theme.bgTertiary, border: `1px solid ${theme.borderSecondary}`, padding: '4px 8px', borderRadius: '4px', fontSize: '11px', color: theme.textSecondary }}>C# / .NET</span>
+                <span style={{ backgroundColor: theme.bgTertiary, border: `1px solid ${theme.borderSecondary}`, padding: '4px 8px', borderRadius: '4px', fontSize: '11px', color: theme.textSecondary }}>MySQL</span>
+                <span style={{ backgroundColor: theme.bgTertiary, border: `1px solid ${theme.borderSecondary}`, padding: '4px 8px', borderRadius: '4px', fontSize: '11px', color: theme.textSecondary }}>Windows Forms</span>
               </div>
             </div>
             <div>
@@ -290,26 +334,26 @@ export default function App() {
                 href="https://github.com/jomarfuentes708-lgtm" 
                 target="_blank" 
                 rel="noreferrer"
-                style={{ display: 'inline-block', backgroundColor: '#fff', color: '#000', padding: '8px 16px', borderRadius: '6px', fontSize: '12px', fontWeight: 'bold', textDecoration: 'none' }}
+                style={{ display: 'inline-block', backgroundColor: isDarkMode ? '#fff' : '#000', color: isDarkMode ? '#000' : '#fff', padding: '8px 16px', borderRadius: '6px', fontSize: '12px', fontWeight: 'bold', textDecoration: 'none' }}
               >
                 View on GitHub ↗
               </a>
             </div>
           </div>
 
-          <div style={{ backgroundColor: '#141414', border: '1px solid #222', borderRadius: '12px', padding: '25px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          <div style={{ backgroundColor: theme.bgSecondary, border: `1px solid ${theme.border}`, borderRadius: '12px', padding: '25px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px', flexWrap: 'wrap', gap: '10px' }}>
-                <h3 style={{ fontSize: '20px', fontWeight: 'bold', color: '#fff', margin: 0 }}>ABC Inventory Data Analysis</h3>
-                <span style={{ fontSize: '11px', backgroundColor: '#1a1a1a', border: '1px solid #333', padding: '4px 10px', borderRadius: '20px', color: '#00ffcc' }}>Analytics</span>
+                <h3 style={{ fontSize: '20px', fontWeight: 'bold', color: theme.text, margin: 0 }}>ABC Inventory Data Analysis</h3>
+                <span style={{ fontSize: '11px', backgroundColor: theme.bgTertiary, border: `1px solid ${theme.borderSecondary}`, padding: '4px 10px', borderRadius: '20px', color: theme.accent }}>Analytics</span>
               </div>
-              <p style={{ fontSize: '13px', color: '#aaa', lineHeight: '1.6', marginBottom: '20px' }}>
+              <p style={{ fontSize: '13px', color: theme.textTertiary, lineHeight: '1.6', marginBottom: '20px' }}>
                 An inventory analysis framework utilizing ABC classification methods to evaluate stock value, categorize item importance, and generate performance reports.
               </p>
               <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '20px' }}>
-                <span style={{ backgroundColor: '#1a1a1a', border: '1px solid #333', padding: '4px 8px', borderRadius: '4px', fontSize: '11px', color: '#ccc' }}>Java</span>
-                <span style={{ backgroundColor: '#1a1a1a', border: '1px solid #333', padding: '4px 8px', borderRadius: '4px', fontSize: '11px', color: '#ccc' }}>SQL Database</span>
-                <span style={{ backgroundColor: '#1a1a1a', border: '1px solid #333', padding: '4px 8px', borderRadius: '4px', fontSize: '11px', color: '#ccc' }}>Data Processing</span>
+                <span style={{ backgroundColor: theme.bgTertiary, border: `1px solid ${theme.borderSecondary}`, padding: '4px 8px', borderRadius: '4px', fontSize: '11px', color: theme.textSecondary }}>Java</span>
+                <span style={{ backgroundColor: theme.bgTertiary, border: `1px solid ${theme.borderSecondary}`, padding: '4px 8px', borderRadius: '4px', fontSize: '11px', color: theme.textSecondary }}>SQL Database</span>
+                <span style={{ backgroundColor: theme.bgTertiary, border: `1px solid ${theme.borderSecondary}`, padding: '4px 8px', borderRadius: '4px', fontSize: '11px', color: theme.textSecondary }}>Data Processing</span>
               </div>
             </div>
             <div>
@@ -317,7 +361,7 @@ export default function App() {
                 href="https://github.com/jomarfuentes708-lgtm" 
                 target="_blank" 
                 rel="noreferrer"
-                style={{ display: 'inline-block', backgroundColor: '#fff', color: '#000', padding: '8px 16px', borderRadius: '6px', fontSize: '12px', fontWeight: 'bold', textDecoration: 'none' }}
+                style={{ display: 'inline-block', backgroundColor: isDarkMode ? '#fff' : '#000', color: isDarkMode ? '#000' : '#fff', padding: '8px 16px', borderRadius: '6px', fontSize: '12px', fontWeight: 'bold', textDecoration: 'none' }}
               >
                 View on GitHub ↗
               </a>
@@ -329,8 +373,8 @@ export default function App() {
 
       {/* Contact Section */}
       <div id="contact" style={{ padding: '60px 20px', textAlign: 'center' }}>
-        <h2 style={{ fontSize: '30px', fontWeight: 'bold', marginBottom: '15px' }}>Get In Touch</h2>
-        <p style={{ fontSize: '14px', color: '#aaa', maxWidth: '450px', margin: '0 auto 25px auto', lineHeight: '1.5' }}>
+        <h2 style={{ fontSize: '30px', fontWeight: 'bold', marginBottom: '15px', color: theme.text }}>Get In Touch</h2>
+        <p style={{ fontSize: '14px', color: theme.textTertiary, maxWidth: '450px', margin: '0 auto 25px auto', lineHeight: '1.5' }}>
           Interested in collaborating or discussing web development projects? Feel free to reach out via social media or email!
         </p>
         
@@ -341,9 +385,9 @@ export default function App() {
             href="https://github.com/jomarfuentes708-lgtm" 
             target="_blank" 
             rel="noreferrer"
-            style={{ backgroundColor: '#1a1a1a', color: '#fff', border: '1px solid #444', padding: '10px 18px', borderRadius: '8px', textDecoration: 'none', fontWeight: 'bold', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '8px' }}
+            style={{ backgroundColor: theme.bgTertiary, color: theme.text, border: `1px solid ${theme.borderTertiary}`, padding: '10px 18px', borderRadius: '8px', textDecoration: 'none', fontWeight: 'bold', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '8px' }}
           >
-            <FaGithub style={{ fontSize: '16px', color: '#fff' }} /> GitHub
+            <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub" style={{ width: '16px', height: '16px' }} /> GitHub
           </a>
 
           {/* Facebook */}
@@ -351,17 +395,17 @@ export default function App() {
             href="https://www.facebook.com/jomar.fuentes.803520" 
             target="_blank" 
             rel="noreferrer"
-            style={{ backgroundColor: '#1a1a1a', color: '#fff', border: '1px solid #444', padding: '10px 18px', borderRadius: '8px', textDecoration: 'none', fontWeight: 'bold', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '8px' }}
+            style={{ backgroundColor: theme.bgTertiary, color: theme.text, border: `1px solid ${theme.borderTertiary}`, padding: '10px 18px', borderRadius: '8px', textDecoration: 'none', fontWeight: 'bold', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '8px' }}
           >
-            <FaFacebook style={{ fontSize: '16px', color: '#1877F2' }} /> Facebook
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Facebook_Logo_2023.png" alt="Facebook" style={{ width: '16px', height: '16px' }} /> Facebook
           </a>
 
           {/* Gmail */}
           <a 
             href="mailto:jomarfuentes708@gmail.com" 
-            style={{ backgroundColor: '#1a1a1a', color: '#fff', border: '1px solid #444', padding: '10px 18px', borderRadius: '8px', textDecoration: 'none', fontWeight: 'bold', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '8px' }}
+            style={{ backgroundColor: theme.bgTertiary, color: theme.text, border: `1px solid ${theme.borderTertiary}`, padding: '10px 18px', borderRadius: '8px', textDecoration: 'none', fontWeight: 'bold', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '8px' }}
           >
-            <SiGmail style={{ fontSize: '16px', color: '#EA4335' }} /> Gmail
+            <img src="https://www.gstatic.com/images/branding/product/1x/gmail_2020q4_96dp.png" alt="Gmail" style={{ width: '16px', height: '16px' }} /> Gmail
           </a>
 
           {/* TikTok */}
@@ -369,16 +413,16 @@ export default function App() {
             href="https://www.tiktok.com/@jomarfuentes3872" 
             target="_blank" 
             rel="noreferrer"
-            style={{ backgroundColor: '#1a1a1a', color: '#fff', border: '1px solid #444', padding: '10px 18px', borderRadius: '8px', textDecoration: 'none', fontWeight: 'bold', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '8px' }}
+            style={{ backgroundColor: theme.bgTertiary, color: theme.text, border: `1px solid ${theme.borderTertiary}`, padding: '10px 18px', borderRadius: '8px', textDecoration: 'none', fontWeight: 'bold', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '8px' }}
           >
-            <FaTiktok style={{ fontSize: '16px', color: '#ff0050' }} /> TikTok
+            <img src="https://www.tiktok.com/favicon.ico" alt="TikTok" style={{ width: '16px', height: '16px' }} /> TikTok
           </a>
         </div>
 
         <div>
           <button 
             onClick={handleDownloadCV}
-            style={{ backgroundColor: '#00ffcc', color: '#000', border: 'none', padding: '10px 20px', borderRadius: '8px', fontWeight: 'bold', fontSize: '13px', cursor: 'pointer' }}
+            style={{ backgroundColor: theme.accent, color: '#000', border: 'none', padding: '10px 20px', borderRadius: '8px', fontWeight: 'bold', fontSize: '13px', cursor: 'pointer' }}
           >
             Download Resume / CV
           </button>
