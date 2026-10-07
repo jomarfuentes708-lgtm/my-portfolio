@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { FaGithub, FaFacebook, FaTiktok } from 'react-icons/fa';
+import { SiGmail } from 'react-icons/si';
 
 export default function App() {
   const roles = [
@@ -332,38 +334,47 @@ export default function App() {
           Interested in collaborating or discussing web development projects? Feel free to reach out via social media or email!
         </p>
         
-        {/* Contact Links */}
+        {/* Contact Links with Official Brand Icons */}
         <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap', marginBottom: '20px' }}>
+          
+          {/* GitHub */}
           <a 
             href="https://github.com/jomarfuentes708-lgtm" 
             target="_blank" 
             rel="noreferrer"
-            style={{ backgroundColor: '#1a1a1a', color: '#fff', border: '1px solid #444', padding: '10px 18px', borderRadius: '8px', textDecoration: 'none', fontWeight: 'bold', fontSize: '13px' }}
+            style={{ backgroundColor: '#1a1a1a', color: '#fff', border: '1px solid #444', padding: '10px 18px', borderRadius: '8px', textDecoration: 'none', fontWeight: 'bold', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '8px' }}
           >
-            GitHub ↗
+            <FaGithub style={{ fontSize: '16px', color: '#fff' }} /> GitHub
           </a>
+
+          {/* Facebook */}
           <a 
             href="https://www.facebook.com/jomar.fuentes.803520" 
             target="_blank" 
             rel="noreferrer"
-            style={{ backgroundColor: '#1a1a1a', color: '#fff', border: '1px solid #444', padding: '10px 18px', borderRadius: '8px', textDecoration: 'none', fontWeight: 'bold', fontSize: '13px' }}
+            style={{ backgroundColor: '#1a1a1a', color: '#fff', border: '1px solid #444', padding: '10px 18px', borderRadius: '8px', textDecoration: 'none', fontWeight: 'bold', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '8px' }}
           >
-            Facebook ↗
+            <FaFacebook style={{ fontSize: '16px', color: '#1877F2' }} /> Facebook
           </a>
+
+          {/* Gmail */}
           <a 
             href="mailto:jomarfuentes708@gmail.com" 
-            style={{ backgroundColor: '#1a1a1a', color: '#fff', border: '1px solid #444', padding: '10px 18px', borderRadius: '8px', textDecoration: 'none', fontWeight: 'bold', fontSize: '13px' }}
+            style={{ backgroundColor: '#1a1a1a', color: '#fff', border: '1px solid #444', padding: '10px 18px', borderRadius: '8px', textDecoration: 'none', fontWeight: 'bold', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '8px' }}
           >
-            Gmail ↗
+            <SiGmail style={{ fontSize: '16px', color: '#EA4335' }} /> Gmail
           </a>
+
+          {/* TikTok */}
           <a 
             href="https://www.tiktok.com/@jomarfuentes3872" 
             target="_blank" 
             rel="noreferrer"
-            style={{ backgroundColor: '#1a1a1a', color: '#fff', border: '1px solid #444', padding: '10px 18px', borderRadius: '8px', textDecoration: 'none', fontWeight: 'bold', fontSize: '13px' }}
+            style={{ backgroundColor: '#1a1a1a', color: '#fff', border: '1px solid #444', padding: '10px 18px', borderRadius: '8px', textDecoration: 'none', fontWeight: 'bold', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '8px' }}
           >
-            TikTok ↗
+            <FaTiktok style={{ fontSize: '16px', color: '#ff0050' }} /> TikTok
           </a>
+
         </div>
 
         <div>
