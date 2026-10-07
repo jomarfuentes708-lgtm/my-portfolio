@@ -12,8 +12,8 @@ export default function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
 
-  // Images for the Slider
- const groupImages = ["/group1.jpg", "/group2.jpg"];
+  // Images for the Slider (2 images)
+  const groupImages = ["/group1.jpg", "/group2.jpg"];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
@@ -54,7 +54,7 @@ export default function App() {
   const handleDownloadCV = () => {
     const element = document.createElement("a");
     const file = new Blob([
-      "JOMAR FUENTES\nAspiring Web Developer\nCollege Student at Computer Communication Development Institute\n\nSkills: C#, Java, React with Vite, SQL, MySQL, Git, Tailwind CSS\nProjects: Dormitory Allocation System, ABC Inventory Data Analysis\nGitHub: https://github.com/jomarfuentes708-lgtm"
+      "JOMAR FUENTES\nAspiring Web Developer\nCollege Student at Computer Communication Development Institute\n\nSkills: C#, Java, React with Vite, SQL, MySQL, Git, Tailwind CSS\nProjects: Dormitory Allocation System, ABC Inventory Data Analysis\nGitHub: https://github.com/jomarfuentes708-lgtm\nFacebook: https://www.facebook.com/jomar.fuentes.803520\nGmail: jomarfuentes708@gmail.com\nTikTok: @jomarfuentes3872"
     ], { type: 'text/plain' });
     element.href = URL.createObjectURL(file);
     element.download = "Jomar_Fuentes_CV.txt";
@@ -329,17 +329,44 @@ export default function App() {
       <div id="contact" style={{ padding: '60px 20px', textAlign: 'center' }}>
         <h2 style={{ fontSize: '30px', fontWeight: 'bold', marginBottom: '15px' }}>Get In Touch</h2>
         <p style={{ fontSize: '14px', color: '#aaa', maxWidth: '450px', margin: '0 auto 25px auto', lineHeight: '1.5' }}>
-          Interested in collaborating or discussing web development projects? Feel free to reach out via GitHub or email!
+          Interested in collaborating or discussing web development projects? Feel free to reach out via social media or email!
         </p>
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap' }}>
+        
+        {/* Contact Links */}
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap', marginBottom: '20px' }}>
           <a 
             href="https://github.com/jomarfuentes708-lgtm" 
             target="_blank" 
             rel="noreferrer"
-            style={{ backgroundColor: '#1a1a1a', color: '#fff', border: '1px solid #444', padding: '10px 20px', borderRadius: '8px', textDecoration: 'none', fontWeight: 'bold', fontSize: '13px' }}
+            style={{ backgroundColor: '#1a1a1a', color: '#fff', border: '1px solid #444', padding: '10px 18px', borderRadius: '8px', textDecoration: 'none', fontWeight: 'bold', fontSize: '13px' }}
           >
-            GitHub: @jomarfuentes708-lgtm
+            GitHub ↗
           </a>
+          <a 
+            href="https://www.facebook.com/jomar.fuentes.803520" 
+            target="_blank" 
+            rel="noreferrer"
+            style={{ backgroundColor: '#1a1a1a', color: '#fff', border: '1px solid #444', padding: '10px 18px', borderRadius: '8px', textDecoration: 'none', fontWeight: 'bold', fontSize: '13px' }}
+          >
+            Facebook ↗
+          </a>
+          <a 
+            href="mailto:jomarfuentes708@gmail.com" 
+            style={{ backgroundColor: '#1a1a1a', color: '#fff', border: '1px solid #444', padding: '10px 18px', borderRadius: '8px', textDecoration: 'none', fontWeight: 'bold', fontSize: '13px' }}
+          >
+            Gmail ↗
+          </a>
+          <a 
+            href="https://www.tiktok.com/@jomarfuentes3872" 
+            target="_blank" 
+            rel="noreferrer"
+            style={{ backgroundColor: '#1a1a1a', color: '#fff', border: '1px solid #444', padding: '10px 18px', borderRadius: '8px', textDecoration: 'none', fontWeight: 'bold', fontSize: '13px' }}
+          >
+            TikTok ↗
+          </a>
+        </div>
+
+        <div>
           <button 
             onClick={handleDownloadCV}
             style={{ backgroundColor: '#00ffcc', color: '#000', border: 'none', padding: '10px 20px', borderRadius: '8px', fontWeight: 'bold', fontSize: '13px', cursor: 'pointer' }}
